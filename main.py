@@ -165,8 +165,6 @@ class ER:
 #print(er.displaySQL())
 # WIP print(er.displayTabelle())
 
-
-
 """
 
 Procedura:
