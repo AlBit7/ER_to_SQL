@@ -43,13 +43,19 @@ class handler(http.server.SimpleHTTPRequestHandler):
             
             payload = form.getvalue("fileDaParsare").decode('utf-8-sig')
             er = ER(payload)
-            html = "<p>" + er.displaySQL().replace("\n", "<br>").replace("\t", "&nbsp;&nbsp;&nbsp;&nbsp;") + "</p>"
+            output = er.displaySQL().replace("\n", "<br>").replace("\t", "&nbsp;&nbsp;&nbsp;&nbsp;")
+            
+            file = open(PATH + "/output.html", 'r')
+            html = file.read()
+            file.close()
+
+            html = html.replace("$$", output)
             self.send_response(200)
         
         except:
 
             self.send_response(500)
-            html = "<p>errore server o file corrotto</p>"
+            html = "<p>errore server o file corrotto/mancante</p>"
 
         
         self.send_header('Content-type','text/html')
