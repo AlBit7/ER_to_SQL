@@ -1,14 +1,145 @@
 <html>
-    <header>
-        <title>ER_to_Table</title>
-    </header>
-    <body>
-        <form method="POST" action="http://localhost:8080">
+<header>
 
-            <label for="q">Incolla qui il file: </label>
-            <input type="file" name="f" id="f">
-            <input type="submit" value="INVIA">
-        
+    <title>ER_to_Table</title>
+    <meta charset="UTF-8">
+
+    <style>
+        body {
+            background-color: palegreen;
+        }
+
+        h1 {
+            text-align: center;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 65px;
+            color: rgb(30, 121, 30);
+        }
+
+        .tutto {
+            margin-top: 7.5%;
+        }
+
+        #divFileDaCaricare {
+            width: 40%;
+            height: auto;
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+            border: 5px solid rgb(30, 121, 30);
+            border-radius: 20px;
+        }
+
+        #istruzioni {
+            width: 70%;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 50px;
+            text-align: left;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 16px;
+            color: rgb(30, 121, 30);
+        }
+
+        .scritta {
+            color: rgb(30, 121, 30);
+            font-size: 16px;
+            font-family: "Montserrat", sans-serif;
+        }
+
+        input[type="file"],
+        input[type="submit"] {
+            display: none;
+        }
+
+        .scegliFile {
+            width: 100px;
+            display: inline-block;
+            background-color: palegreen;
+            color: red;
+            border: 2px solid red;
+            border-radius: 10px;
+            padding: 10px 25px;
+            text-align: center;
+            font-size: 16px;
+            font-family: "Montserrat", sans-serif;
+            transition-duration: 0.4s;
+        }
+
+        .scegliFile:hover {
+            color: black;
+            border: 2px solid yellow;
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            cursor: pointer;
+        }
+
+        .invia {
+            width: 100px;
+            margin-top: 10px;
+            margin-bottom: 15px;
+            display: inline-block;
+            background-color: rgb(30, 121, 30);
+            color: white;
+            border: 2px solid rgb(30, 121, 30);
+            border-radius: 10px;
+            padding: 10px 25px;
+            text-align: center;
+            font-size: 16px;
+            font-family: "Montserrat", sans-serif;
+            transition-duration: 0.4s;
+        }
+
+        .invia:hover {
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            cursor: pointer;
+            font-size: 17px;
+        }
+    </style>
+
+</header>
+
+<body>
+
+    <div class="tutto">
+
+        <h1>ER to SQL</h1>
+
+        <form method="POST" enctype="multipart/form-data">
+
+            <div id="divFileDaCaricare">
+                <p class="scritta" id="testo">Carica il file ".erdplus"</p>
+
+                <input type="file" id="file" name="fileDaParsare" accept=".erdplus">
+                <label class="scegliFile" for="file" id="labelUpload">file mancante!</label>
+                <br>
+                <input type="submit" id="invia">
+                <label class="invia" for="invia" id="labelInvia">Invia il file</label>
+            </div>
+
         </form>
-    </body>
+
+        <div id="istruzioni">
+           <p>Questo programma converte un file con estensione ".erdplus" in codice SQL. Usare il codice per creare un database modificando la scritta "type" con il tipo di attributo più adatto. Per creare il diagramma seguire questo <a href="https://erdplus.com/standalone">link</a> ed esportare come file il progetto creato.</p>
+        </div>
+    
+    </div>
+
+    <script>
+
+        const bottoneUpload = document.getElementById("file");
+        const scritta = document.getElementById("testo");
+        const labelUpload = document.getElementById("labelUpload");
+
+        bottoneUpload.addEventListener("change", function() {
+            scritta.innerHTML = "file caricato:<br>" + bottoneUpload.value.slice(12);
+            labelUpload.innerHTML = "&#10004;";
+            labelUpload.style.color = "rgb(255, 255, 255)";
+            labelUpload.style.border = "rgb(30, 121, 30)";
+            labelUpload.style.backgroundColor = "rgb(30, 121, 30)";
+        });
+
+    </script>
+
+</body>
+
 </html>
