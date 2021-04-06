@@ -29,6 +29,7 @@
         #copia {
             margin-top: 45px;
             margin-left: 45px;
+            width: 150px;
             display: inline-block;
             background-color: palegreen;
             color: rgb(30, 121, 30);
@@ -68,6 +69,11 @@
 
         copia.onclick = function () {
             copyStringToClipboard(codice);
+            copia.innerHTML = "&#10004;";
+            copia.style.color = "rgb(255, 255, 255)";
+            copia.style.border = "rgb(30, 121, 30)";
+            copia.style.backgroundColor = "rgb(30, 121, 30)";
+            console.log("codice copiato");
         };
 
         // questa l'ho presa da "https://techoverflow.net/2018/03/30/copying-strings-to-the-clipboard-using-pure-javascript/"
